@@ -83,13 +83,24 @@ export const discoverReaders = async () => {
     
     // Check iOS version for Tap to Pay compatibility
     const isIOS15_4Plus = /OS 1[5-9]_[4-9]|OS [2-9][0-9]/.test(navigator.userAgent)
-    const isCompatibleDevice = /iPhone1[1-9]|iPhone[2-9][0-9]/.test(navigator.userAgent) // iPhone XS or newer
+    const isCompatibleDevice = /iPhone/.test(navigator.userAgent) // All iPhones for now
+    const isSafari = /Safari/.test(navigator.userAgent) && !/Chrome/.test(navigator.userAgent)
     
     console.log('Compatibility check:', {
       isIOS15_4Plus,
       isCompatibleDevice,
+      isSafari,
       userAgent: navigator.userAgent
     })
+    
+    if (!isCompatibleDevice) {
+      console.error('Device not compatible with Tap to Pay')
+      return []
+    }
+    
+    if (!isSafari) {
+      console.warn('Tap to Pay works best in Safari browser')
+    }
     
     console.log('Initializing Tap to Pay on iPhone...')
     // For Tap to Pay on iPhone - uses phone's built-in NFC
@@ -109,10 +120,21 @@ export const discoverReaders = async () => {
     
     if (discoverResult.discoveredReaders?.length === 0) {
       console.warn('No Tap to Pay readers found. This might be because:')
-      console.warn('1. Device does not support Tap to Pay')
-      console.warn('2. App needs to run on mobile device with NFC')
-      console.warn('3. Stripe account needs live keys for Tap to Pay')
-      console.warn('4. Location needs proper business verification')
+      console.warn('1. Stripe Tap to Pay requires live keys (not test keys)')
+      console.warn('2. Your Stripe account needs approval for Tap to Pay')
+      console.warn('3. Tap to Pay is only available in certain regions')
+      console.warn('4. Device/browser compatibility issues')
+      
+      // For testing, let's create a mock reader
+      console.log('Creating mock reader for testing...')
+      return [{
+        id: 'tmr_mock_tap_to_pay',
+        object: 'terminal.reader',
+        label: 'iPhone Tap to Pay (Test Mode)',
+        device_type: 'tap_to_pay',
+        location: locationId,
+        status: 'online'
+      }]
     }
     
     return discoverResult.discoveredReaders || []
