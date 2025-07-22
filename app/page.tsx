@@ -11,8 +11,8 @@ export default function Page() {
             <div className="space-y-6">
               <div className="space-y-6">
                 <h1 className="tracking-tight font-normal text-6xl">Turn your phone into a payment terminal</h1>
-                <p className="text-gray-600 font-normal text-lg">
-                  Accept credit cards, tap to pay, and digital wallets. No extra hardware needed. Get paid in 2-5 business days.
+                <p className="text-gray-600 font-normal text-md">
+                  Accept debit cards, credit cards, tap to pay, and digital wallets. Get paid in 2-5 business days.
                 </p>
               </div>
 
@@ -69,7 +69,7 @@ export default function Page() {
                   d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"
                 />
               </svg>
-              <h3 className="text-lg text-black font-semibold mb-2">No Hardware</h3>
+              <h3 className="text-lg text-black font-semibold mb-2">No Extra Hardware</h3>
               <p className="text-gray-600">Just your phone</p>
             </div>
             <div>
