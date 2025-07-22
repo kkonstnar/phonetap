@@ -22,6 +22,7 @@ export async function POST(req: NextRequest) {
 
     if (listResponse.ok) {
       const locations = await listResponse.json()
+      console.log('List locations response:', locations)
       if (locations.data && locations.data.length > 0) {
         console.log('Using existing location:', locations.data[0].id)
         return NextResponse.json({ 
@@ -29,6 +30,9 @@ export async function POST(req: NextRequest) {
           displayName: locations.data[0].display_name 
         })
       }
+    } else {
+      const listError = await listResponse.text()
+      console.log('List locations failed:', listResponse.status, listError)
     }
 
     // If no locations exist, create one
@@ -40,11 +44,12 @@ export async function POST(req: NextRequest) {
         'Content-Type': 'application/x-www-form-urlencoded',
       },
       body: new URLSearchParams({
-        display_name: 'PhoneTap Location',
+        display_name: 'PhoneTap Test Location',
         'address[line1]': '123 Business St',
-        'address[city]': 'Kingston',
-        'address[country]': 'JM',
-        'address[postal_code]': '12345',
+        'address[city]': 'San Francisco',
+        'address[country]': 'US',
+        'address[state]': 'CA',
+        'address[postal_code]': '94102',
       }),
     })
 
