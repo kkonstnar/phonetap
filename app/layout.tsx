@@ -31,6 +31,8 @@ export default function RootLayout({
         <meta name="apple-mobile-web-app-title" content="PhoneTap" />
         <link rel="apple-touch-icon" href="/icon-192x192.png" />
         <script src="https://js.stripe.com/terminal/v1/"></script>
+        <script src="https://cdn.jsdelivr.net/npm/eruda"></script>
+        <script>eruda.init();</script>
       </head>
       <body className="bg-white">
         <AuthProvider>{children}</AuthProvider>
