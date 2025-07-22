@@ -26,16 +26,32 @@ export const initializeStripeTerminal = async () => {
   if (typeof window === 'undefined') return null
   
   try {
-    if (!terminal && window.StripeTerminal) {
+    console.log('Device info:', {
+      userAgent: navigator.userAgent,
+      platform: navigator.platform,
+      isIOS: /iPad|iPhone|iPod/.test(navigator.userAgent),
+      isSecure: window.location.protocol === 'https:',
+      hasNFC: 'nfc' in navigator
+    })
+    
+    if (!window.StripeTerminal) {
+      console.error('Stripe Terminal SDK not loaded')
+      return null
+    }
+    
+    if (!terminal) {
+      console.log('Creating Stripe Terminal instance...')
       terminal = window.StripeTerminal.create({
         onFetchConnectionToken: fetchConnectionToken,
         onUnexpectedReaderDisconnect: unexpectedDisconnect,
       })
+      console.log('Stripe Terminal created successfully')
     }
     
     return terminal
   } catch (error) {
     console.error('Failed to initialize Stripe Terminal:', error)
+    console.error('Error details:', error)
     return null
   }
 }
@@ -63,8 +79,20 @@ export const discoverReaders = async () => {
     const { locationId } = await locationResponse.json()
     console.log('Using location:', locationId)
     
-    console.log('Initializing Tap to Pay on mobile device...')
-    // For Tap to Pay on iPhone/Android - uses phone's built-in NFC
+    console.log('Checking Tap to Pay compatibility...')
+    
+    // Check iOS version for Tap to Pay compatibility
+    const isIOS15_4Plus = /OS 1[5-9]_[4-9]|OS [2-9][0-9]/.test(navigator.userAgent)
+    const isCompatibleDevice = /iPhone1[1-9]|iPhone[2-9][0-9]/.test(navigator.userAgent) // iPhone XS or newer
+    
+    console.log('Compatibility check:', {
+      isIOS15_4Plus,
+      isCompatibleDevice,
+      userAgent: navigator.userAgent
+    })
+    
+    console.log('Initializing Tap to Pay on iPhone...')
+    // For Tap to Pay on iPhone - uses phone's built-in NFC
     const discoverResult = await terminal.discoverReaders({
       simulated: false, // Real mobile NFC
       discoveryMethod: 'tap_to_pay', // Mobile tap to pay (software-based)
@@ -77,9 +105,20 @@ export const discoverReaders = async () => {
     }
     
     console.log('Found real readers:', discoverResult.discoveredReaders?.length || 0)
+    console.log('Reader discovery result:', discoverResult)
+    
+    if (discoverResult.discoveredReaders?.length === 0) {
+      console.warn('No Tap to Pay readers found. This might be because:')
+      console.warn('1. Device does not support Tap to Pay')
+      console.warn('2. App needs to run on mobile device with NFC')
+      console.warn('3. Stripe account needs live keys for Tap to Pay')
+      console.warn('4. Location needs proper business verification')
+    }
+    
     return discoverResult.discoveredReaders || []
   } catch (error) {
     console.error('Error discovering readers:', error)
+    console.error('Full error details:', JSON.stringify(error, null, 2))
     return []
   }
 }

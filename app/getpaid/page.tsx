@@ -175,10 +175,17 @@ export default function GetPaidPage() {
         {/* Connection Status */}
         <Card>
           <CardContent className="pt-6">
-            <div className="flex items-center space-x-2">
-              <div className={`w-3 h-3 rounded-full ${connectedReader ? 'bg-green-500' : 'bg-yellow-500'}`}></div>
-              <span className="text-sm">
-                {connectedReader ? 'Reader Connected' : 'Connecting to reader...'}
+            <div className="flex items-center justify-between">
+              <div className="flex items-center space-x-2">
+                <div className={`w-3 h-3 rounded-full ${connectedReader ? 'bg-green-500' : readers.length > 0 ? 'bg-blue-500' : 'bg-yellow-500'}`}></div>
+                <span className="text-sm">
+                  {connectedReader ? 'Tap to Pay Ready' : 
+                   readers.length > 0 ? 'Connecting...' : 
+                   'Initializing Tap to Pay...'}
+                </span>
+              </div>
+              <span className="text-xs text-gray-500">
+                {readers.length} readers found
               </span>
             </div>
           </CardContent>
