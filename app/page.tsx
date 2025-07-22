@@ -117,7 +117,7 @@ export default function Page() {
               </div>
             </div>
           </Link>
-          <p className="text-sm text-gray-500">Free • No monthly fees • 4.9% per transaction</p>
+          <p className="text-sm text-gray-500">Free • No monthly fees • 3.9% + JMD $70.00 per transaction</p>
         </div>
       </section>
 
