@@ -3,10 +3,9 @@ import './globals.css'
 import { AuthProvider } from '@/components/auth-provider'
 
 export const metadata: Metadata = {
-  title: 'PhoneTap - Turn your phone into a payment terminal',
-  description: 'Accept credit cards, tap to pay, and digital wallets. No extra hardware needed.',
+  title: 'PhoneTap - Accept payments with Stripe',
+  description: 'Get started with Stripe Connect to accept payments online.',
   generator: 'v0.dev',
-  manifest: '/manifest.json',
 }
 
 export const viewport = {
@@ -26,13 +25,6 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        <meta name="apple-mobile-web-app-capable" content="yes" />
-        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
-        <meta name="apple-mobile-web-app-title" content="PhoneTap" />
-        <link rel="apple-touch-icon" href="/icon-192x192.png" />
-        <script src="https://js.stripe.com/terminal/v1/"></script>
-        <script src="https://cdn.jsdelivr.net/npm/eruda"></script>
-        <script>eruda.init();</script>
       </head>
       <body className="bg-white">
         <AuthProvider>{children}</AuthProvider>
