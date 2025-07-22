@@ -48,10 +48,27 @@ export const discoverReaders = async () => {
   if (!terminal) return []
   
   try {
-    console.log('Discovering readers...')
-    // For Tap to Pay on iPhone/Android, discover mobile readers
+    console.log('Getting location for real readers...')
+    
+    // Get or create a location first
+    const locationResponse = await fetch('/api/terminal/location', {
+      method: 'POST',
+    })
+    
+    if (!locationResponse.ok) {
+      console.error('Failed to get location')
+      return []
+    }
+    
+    const { locationId } = await locationResponse.json()
+    console.log('Using location:', locationId)
+    
+    console.log('Discovering real readers...')
+    // For real Tap to Pay on iPhone/Android
     const discoverResult = await terminal.discoverReaders({
-      simulated: true, // Use false for production
+      simulated: false, // Real readers now!
+      discoveryMethod: 'tap_to_pay', // Specifically for mobile tap to pay
+      location: locationId, // Use the real location
     })
     
     if (discoverResult.error) {
@@ -59,7 +76,7 @@ export const discoverReaders = async () => {
       return []
     }
     
-    console.log('Found readers:', discoverResult.discoveredReaders?.length || 0)
+    console.log('Found real readers:', discoverResult.discoveredReaders?.length || 0)
     return discoverResult.discoveredReaders || []
   } catch (error) {
     console.error('Error discovering readers:', error)

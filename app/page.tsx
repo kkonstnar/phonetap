@@ -29,7 +29,7 @@ export default function Page() {
                     </svg>
                     <div className="text-left">
                       <div className="text-xs">Get started with</div>
-                      <div className="-mt-1 font-medium text-lg">PhoneTap</div>
+                      <div className="-mt-1 font-medium text-md">PhoneTap</div>
                     </div>
                   </div>
                 </Link>
@@ -107,7 +107,7 @@ export default function Page() {
               </svg>
               <div className="text-left">
                 <div className="text-xs">Get started with</div>
-                <div className="text-lg -mt-1 font-medium">PhoneTap</div>
+                <div className="text-md -mt-1 font-medium">PhoneTap</div>
               </div>
             </div>
           </Link>
