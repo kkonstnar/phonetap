@@ -103,12 +103,29 @@ export const discoverReaders = async () => {
     }
     
     console.log('Initializing Tap to Pay on iPhone...')
-    // For Tap to Pay on iPhone - uses phone's built-in NFC
-    const discoverResult = await terminal.discoverReaders({
-      simulated: false, // Real mobile NFC
-      discoveryMethod: 'tap_to_pay', // Mobile tap to pay (software-based)
-      location: locationId, // Use the real location
+    console.log('Discovery parameters:', {
+      simulated: false,
+      discoveryMethod: 'tap_to_pay',
+      location: locationId
     })
+    
+    // Try discovering Tap to Pay readers
+    let discoverResult = await terminal.discoverReaders({
+      simulated: false,
+      discoveryMethod: 'tap_to_pay',
+      location: locationId,
+    })
+    
+    // If no readers found, try without location (some accounts don't require it)
+    if (!discoverResult.error && discoverResult.discoveredReaders?.length === 0) {
+      console.log('Trying discovery without location...')
+      discoverResult = await terminal.discoverReaders({
+        simulated: false,
+        discoveryMethod: 'tap_to_pay',
+      })
+    }
+    
+    console.log('Raw discovery response:', discoverResult)
     
     if (discoverResult.error) {
       console.error('Failed to discover readers:', discoverResult.error)
@@ -119,22 +136,10 @@ export const discoverReaders = async () => {
     console.log('Reader discovery result:', discoverResult)
     
     if (discoverResult.discoveredReaders?.length === 0) {
-      console.warn('No Tap to Pay readers found. This might be because:')
-      console.warn('1. Stripe Tap to Pay requires live keys (not test keys)')
-      console.warn('2. Your Stripe account needs approval for Tap to Pay')
-      console.warn('3. Tap to Pay is only available in certain regions')
-      console.warn('4. Device/browser compatibility issues')
-      
-      // For testing, let's create a mock reader
-      console.log('Creating mock reader for testing...')
-      return [{
-        id: 'tmr_mock_tap_to_pay',
-        object: 'terminal.reader',
-        label: 'iPhone Tap to Pay (Test Mode)',
-        device_type: 'tap_to_pay',
-        location: locationId,
-        status: 'online'
-      }]
+      console.error('No Tap to Pay readers found')
+      console.error('Discovery method used:', 'tap_to_pay')
+      console.error('Location ID:', locationId)
+      console.error('Full discovery result:', JSON.stringify(discoverResult, null, 2))
     }
     
     return discoverResult.discoveredReaders || []
