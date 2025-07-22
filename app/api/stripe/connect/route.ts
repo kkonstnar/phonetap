@@ -23,8 +23,8 @@ export async function POST(req: NextRequest) {
         type: 'custom',
         country: 'JM',
         email: email || '',
-        'capabilities[card_payments][requested]': 'true',
         'capabilities[transfers][requested]': 'true',
+        'tos_acceptance[service_agreement]': 'recipient',
       }),
     })
 
@@ -52,6 +52,7 @@ export async function POST(req: NextRequest) {
         refresh_url: `${process.env.NEXTAUTH_URL || 'http://localhost:3000'}/getpaid?refresh=true`,
         return_url: `${process.env.NEXTAUTH_URL || 'http://localhost:3000'}/getpaid?success=true`,
         type: 'account_onboarding',
+        collect: 'eventually_due',
       }),
     })
 

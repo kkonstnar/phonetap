@@ -12,7 +12,7 @@ export default function Page() {
               <div className="space-y-6">
                 <h1 className="tracking-tight font-normal text-6xl">Turn your phone into a payment terminal</h1>
                 <p className="text-gray-600 font-normal text-lg">
-                  Accept credit cards, tap to pay, and digital wallets. No extra hardware needed.
+                  Accept credit cards, tap to pay, and digital wallets. No extra hardware needed. Get paid in 2-5 business days.
                 </p>
               </div>
 
