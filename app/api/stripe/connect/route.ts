@@ -21,7 +21,7 @@ export async function POST(req: NextRequest) {
       },
       body: new URLSearchParams({
         type: 'custom',
-        country: 'US',
+        country: 'JM',
         email: email || '',
         'capabilities[card_payments][requested]': 'true',
         'capabilities[transfers][requested]': 'true',
