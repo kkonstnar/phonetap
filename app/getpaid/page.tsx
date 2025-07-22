@@ -235,7 +235,7 @@ export default function GetPaidPage() {
                 Hold customer's card or device near your phone's NFC area (usually near the top)
               </p>
               <p className="text-xs text-green-600 mt-1">
-                ⚡ Real NFC payments enabled
+                📱 Tap to Pay on iPhone/Android enabled
               </p>
             </div>
           </CardContent>
@@ -259,7 +259,7 @@ export default function GetPaidPage() {
         <div className="text-center text-xs text-gray-500 space-y-1">
           <p>Powered by Stripe Terminal</p>
           <p>2.9% + $0.30 per transaction</p>
-          <p className="text-green-600">🚀 Live NFC Hardware Mode</p>
+          <p className="text-green-600">📱 Tap to Pay on Mobile</p>
         </div>
       </div>
     </div>

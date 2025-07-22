@@ -63,11 +63,11 @@ export const discoverReaders = async () => {
     const { locationId } = await locationResponse.json()
     console.log('Using location:', locationId)
     
-    console.log('Discovering real readers...')
-    // For real Tap to Pay on iPhone/Android
+    console.log('Initializing Tap to Pay on mobile device...')
+    // For Tap to Pay on iPhone/Android - uses phone's built-in NFC
     const discoverResult = await terminal.discoverReaders({
-      simulated: false, // Real readers now!
-      discoveryMethod: 'tap_to_pay', // Specifically for mobile tap to pay
+      simulated: false, // Real mobile NFC
+      discoveryMethod: 'tap_to_pay', // Mobile tap to pay (software-based)
       location: locationId, // Use the real location
     })
     

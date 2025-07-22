@@ -7,7 +7,7 @@ export default function Page() {
       {/* Main Content */}
       <main className="px-6 py-20">
         <div className="max-w-4xl mx-auto">
-          <div className="grid lg:grid-cols-2 gap-16 items-center">
+          <div className="grid md:grid-cols-2 gap-16 items-center">
             <div className="space-y-8">
               <div className="space-y-6">
                 <h1 className="tracking-tight font-normal text-6xl">Turn your phone into a payment terminal</h1>
@@ -50,7 +50,7 @@ export default function Page() {
       </main>
 
       {/* Features */}
-      <section className="px-6 py-20 bg-slate-50">
+      <section className="px-6 py-20 bg-zinc-50">
         <div className="max-w-4xl mx-auto">
           <div className="grid md:grid-cols-3 gap-12 text-center">
             <div>
@@ -76,7 +76,6 @@ export default function Page() {
               </svg>
               <h3 className="text-lg text-black font-semibold mb-2">Accept Cards</h3>
               <div className="flex items-center justify-center space-x-2">
-                <span className="text-lg">🇯🇲</span>
                 <p className="text-gray-600">Visa, Mastercard</p>
               </div>
             </div>
@@ -125,6 +124,9 @@ export default function Page() {
             </Link>
             <Link href="/terms" className="hover:text-black">
               Terms
+            </Link>
+            <Link href="/signup" className="hover:text-black">
+              Sign In
             </Link>
           </div>
         </div>
