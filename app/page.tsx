@@ -5,7 +5,7 @@ export default function Page() {
   return (
     <div className="min-h-screen bg-white">
       {/* Main Content */}
-      <main className="px-6 py-12 md:pt-20">
+      <main className="px-6 py-12 md:pt-20 bg-white">
         <div className="max-w-4xl mx-auto">
           <div className="grid md:grid-cols-2 gap-8 md:gap-16 items-start md:items-center">
             <div className="space-y-6 order-1 md:order-1">
@@ -33,14 +33,14 @@ export default function Page() {
                   </Link>
                 </div> */}
 
-                <Link href="/signup" className="inline-block animate-fade-up animation-delay-400">
+                <Link href="/" className="inline-block animate-fade-up animation-delay-400">
                   <div className="bg-black text-white rounded-lg flex items-center space-x-3 hover:bg-gray-800 transition-colors w-fit py-1.5 px-5">
                     <svg className="w-8 h-7" viewBox="0 0 24 24" fill="currentColor">
                       <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z" />
                     </svg>
                     <div className="text-left">
                       <div className="text-xs">Get started with</div>
-                      <div className="-mt-1 font-medium text-md">PhoneTap</div>
+                      <div className="-mt-1 font-medium text-md">HandyPay</div>
                     </div>
                   </div>
                 </Link>
@@ -113,14 +113,14 @@ export default function Page() {
       <section className="px-6 py-20">
         <div className="max-w-2xl mx-auto text-center space-y-6">
           <h2 className="text-3xl font-medium animate-fade-up animation-delay-100">Start accepting payments today</h2>
-          <Link href="/signup" className="inline-block animate-fade-up animation-delay-200">
+          <Link href="/" className="inline-block animate-fade-up animation-delay-200">
             <div className="bg-black text-white rounded-lg flex items-center space-x-3 hover:bg-gray-800 transition-colors w-fit mx-auto px-5 py-1.5">
               <svg className="w-8 h-7" viewBox="0 0 24 24" fill="currentColor">
                 <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z" />
               </svg>
               <div className="text-left">
                 <div className="text-xs">Get started with</div>
-                <div className="text-md -mt-1 font-medium">PhoneTap</div>
+                <div className="text-md -mt-1 font-medium">HandyPay</div>
               </div>
             </div>
           </Link>
@@ -132,7 +132,7 @@ export default function Page() {
       <footer className="px-6 py-8 border-t">
         <div className="max-w-4xl mx-auto">
           <div className="flex justify-between items-center text-sm text-gray-500 mb-4">
-            <span>© 2025 PhoneTap</span>
+            <span>© {new Date().getFullYear()} HandyPay</span>
             <div className="space-x-6">
               <Link href="/privacy" className="hover:text-black">
                 Privacy
@@ -140,9 +140,7 @@ export default function Page() {
               <Link href="/terms" className="hover:text-black">
                 Terms
               </Link>
-              <Link href="/signup" className="hover:text-black">
-                Sign In
-              </Link>
+              
             </div>
           </div>
           <div className="flex items-center justify-center space-x-2 pt-4 border-t border-gray-100">

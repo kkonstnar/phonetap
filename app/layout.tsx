@@ -3,9 +3,9 @@ import './globals.css'
 import { AuthProvider } from '@/components/auth-provider'
 
 export const metadata: Metadata = {
-  title: 'PhoneTap - Accept payments with Stripe',
-  description: 'Get started with Stripe Connect to accept payments online.',
-  generator: 'v0.dev',
+  title: 'HandyPay - Accept payments with your phone',
+  description: 'Accept payments with your phone. Get paid in 2-5 business days.',
+  generator: 'HandyPay',
 }
 
 export const viewport = {
@@ -14,7 +14,7 @@ export const viewport = {
   maximumScale: 1,
   userScalable: false,
   viewportFit: 'cover',
-  themeColor: '#000000',
+  themeColor: '#ffffff',
 }
 
 export default function RootLayout({
@@ -23,7 +23,7 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" className="bg-white">
       <head>
       </head>
       <body className="bg-white">
