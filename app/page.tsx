@@ -40,7 +40,7 @@ export default function Page() {
                     </svg>
                     <div className="text-left">
                       <div className="text-xs">Get started with</div>
-                      <div className="-mt-1 font-medium text-md">HandyPay</div>
+                      <div className="-mt-1 font-medium text-md">PhoneTap</div>
                     </div>
                   </div>
                 </Link>
@@ -120,7 +120,7 @@ export default function Page() {
               </svg>
               <div className="text-left">
                 <div className="text-xs">Get started with</div>
-                <div className="text-md -mt-1 font-medium">HandyPay</div>
+                <div className="text-md -mt-1 font-medium">PhoneTap</div>
               </div>
             </div>
           </Link>
@@ -132,7 +132,7 @@ export default function Page() {
       <footer className="px-6 py-8 border-t">
         <div className="max-w-4xl mx-auto">
           <div className="flex justify-between items-center text-sm text-gray-500 mb-4">
-            <span>© {new Date().getFullYear()} HandyPay</span>
+            <span>© {new Date().getFullYear()} PhoneTap</span>
             <div className="space-x-6">
               <Link href="/privacy" className="hover:text-black">
                 Privacy
